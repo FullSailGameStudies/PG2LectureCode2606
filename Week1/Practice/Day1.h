@@ -12,5 +12,6 @@ public:
 	//
 	// Part A-2.1: create the DECLARATION for CreateTargets_PartA_2
 	//
+	static std::vector<Target> CreateTargets_PartA_2(int mapSize, int colorRange);
 };
 
