@@ -303,8 +303,9 @@ std::vector<Target> Day1::CreateTargets_PartA_2(int mapSize, int colorRange)
 		//rand() - generates a random # from 0 - 32767
 		//% - modulo  num % x means divide num by x and return the remainder
 		// the range of a remainder is always 0 - (x-1)
-		target.col = (rand() % mapSize-2) + 1;//1-mapSize-1
-		target.row = (rand() % mapSize-2) + 1;
+		target.col = (rand() % (mapSize - 2)) + 1;//1-mapSize-1
+		target.row = (rand() % (mapSize - 2)) + 1;
+		std::cout << target.col << "," << target.row << "\n";
 
 		targets.push_back(target);
 	}
