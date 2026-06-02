@@ -78,7 +78,7 @@ void Day1::PartA_1_1()
 			{
 				while (SDL_PollEvent(&e) != 0)
 				{
-					if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE)
+					if (e.type == SDL_QUIT || (e.key.keysym.sym == SDLK_ESCAPE && e.type == SDL_KEYUP))
 					{
 						quit = true;
 					}
@@ -170,7 +170,7 @@ void Day1::PartA_1_2()
 			{
 				while (SDL_PollEvent(&e) != 0)
 				{
-					if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE)
+					if (e.type == SDL_QUIT || (e.key.keysym.sym == SDLK_ESCAPE && e.type == SDL_KEYUP))
 					{
 						quit = true;
 					}
@@ -268,7 +268,7 @@ void Day1::PartA_1_3()
 			{
 				while (SDL_PollEvent(&e) != 0)
 				{
-					if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE)
+					if (e.type == SDL_QUIT || (e.key.keysym.sym == SDLK_ESCAPE && e.type == SDL_KEYUP))
 					{
 						quit = true;
 					}
@@ -397,7 +397,7 @@ void Day1::PartA_2()
 			{
 				while (SDL_PollEvent(&e) != 0)
 				{
-					if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE)
+					if (e.type == SDL_QUIT || (e.key.keysym.sym == SDLK_ESCAPE && e.type == SDL_KEYUP))
 					{
 						quit = true;
 					}
