@@ -11,15 +11,26 @@ public:
 
 	void PartB(int option = 1);
 
+	void NumberOfDays() const
+	{
+		//can't change the object
+		//can't call other non-const methods of the class
+		//days = 100;
+		//SpawnZombies();
+		//std::cout << days;
+	}
 private:
+
+	int days;
 	//
 	// Part B-1.1: Add a method declaration for SpawnZombies
 	//
-	void SpawnZombies(PG2Graphics& graphics, std::vector<Zombie>& walkers, Player& steev);
+	void SpawnZombies(PG2Graphics& graphics, std::vector<Zombie>& walkers,const Player& steev) const;
 
 	//
 	// Part B-2.1: Add a method declaration for RenderZombies
 	//
+	void RenderZombies(const std::vector<Zombie>& walkers)const;
 
 	//
 	// Part B-3.1: Add a method declaration for EraseZombies

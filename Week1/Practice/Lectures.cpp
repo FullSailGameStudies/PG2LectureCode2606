@@ -11,7 +11,7 @@
 
 //IF the parameter is a class, use pass-by-reference
 
-void PrintMe(std::vector<int>& numbers)
+void PrintMe(const std::vector<int>& numbers)
 {
 	//range-based AKA foreach
 	for (auto& i : numbers)
@@ -23,6 +23,8 @@ void Increment(int& number)//pass-by-reference (ALIAS)
 {
 	number++;
 }
+
+
 int main(int argc, char* args[])
 {
 	std::vector<int> nummies;

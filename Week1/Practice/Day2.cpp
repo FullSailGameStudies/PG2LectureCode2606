@@ -4,10 +4,11 @@
 #include <Input.h>
 #include "Player.h"
 
+const float PI = 3.1415f;
 //
 // Part B-1.1: Add a method definition for SpawnZombies
 //
-void Day2::SpawnZombies(PG2Graphics& graphics, std::vector<Zombie>& walkers, Player& steev)
+void Day2::SpawnZombies(PG2Graphics& graphics, std::vector<Zombie>& walkers,const Player& steev) const
 {
 	//create 5 zombies and add them to the vector
 	int x, y;
@@ -30,6 +31,14 @@ void Day2::SpawnZombies(PG2Graphics& graphics, std::vector<Zombie>& walkers, Pla
 //
 // Part B-2.1: Add a method definition for RenderZombies
 //
+void Day2::RenderZombies(const std::vector<Zombie>& walkers) const
+{
+	for (auto& walker : walkers)
+	{
+		walker.Render();
+	}
+}
+
 
 //
 // Part B-3.1: Add a method definition for EraseZombies
@@ -123,6 +132,7 @@ void Day2::PartB(int option)
 				//
 				// Part B-2.3 call RenderZombies
 				//
+				RenderZombies(mobs);
 
 
 				player.Render();
