@@ -4,8 +4,43 @@
 #include <Console.h>
 #include <Input.h>
 
+//reasons to use pass-by-reference:
+// 1) the method needs access to a variable in a different scope
+//		primarily to update it
+// 2) to prevent a copy
+
+//IF the parameter is a class, use pass-by-reference
+
+void PrintMe(std::vector<int>& numbers)
+{
+	//range-based AKA foreach
+	for (auto& i : numbers)
+	{
+		std::cout << i << " ";
+	}
+}
+void Increment(int& number)//pass-by-reference (ALIAS)
+{
+	number++;
+}
 int main(int argc, char* args[])
 {
+	std::vector<int> nummies;
+	for (int i = 0; i < 10000; i++)
+	{
+		nummies.push_back(rand());
+	}
+	PrintMe(nummies);
+
+	int n = 10;
+	Increment(n);//int& number = n;
+	std::cout << n << "\n";
+
+	int n2 = 30;
+	int& nRef = n;
+	nRef = n2;
+	std::cout << n << "\n";
+
 	Day2 day2;
 
 	int menuSelection = 0;

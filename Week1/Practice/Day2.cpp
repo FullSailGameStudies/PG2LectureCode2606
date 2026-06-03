@@ -7,6 +7,25 @@
 //
 // Part B-1.1: Add a method definition for SpawnZombies
 //
+void Day2::SpawnZombies(PG2Graphics& graphics, std::vector<Zombie>& walkers, Player& steev)
+{
+	//create 5 zombies and add them to the vector
+	int x, y;
+	int pX = steev.GetXPosition(), pY = steev.GetYPosition();
+	for (int i = 0; i < 5; i++)
+	{
+		x = rand() % 10;
+		y = rand() % 10;
+		while (x == pX and y == pY)
+		{
+			x = rand() % 10;
+			y = rand() % 10;
+		}
+		Zombie zeek(&graphics, 0.5f, x, y);
+		walkers.push_back(zeek);
+	}
+}
+
 
 //
 // Part B-2.1: Add a method definition for RenderZombies
@@ -62,6 +81,7 @@ void Day2::PartB(int option)
 			//
 			// Part B-1.3 Call SpawnZombies
 			//
+			SpawnZombies(engine, mobs, player);
 
 			bool quit = false;
 			SDL_Event e;
@@ -91,6 +111,7 @@ void Day2::PartB(int option)
 							//
 							// Part B-1.3 Call SpawnZombies
 							//
+							SpawnZombies(engine, mobs, player);
 						}
 					}
 				}
