@@ -28,10 +28,60 @@ void Increment(int& number)//pass-by-reference (ALIAS)
 int main(int argc, char* args[])
 {
 	std::vector<int> nummies;
-	for (int i = 0; i < 10000; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		nummies.push_back(rand());
 	}
+	std::vector<int> nummies2{ 1,2,3,4,5,6,6,8,9 };
+	std::vector<int>::iterator first = nummies2.begin();
+	std::vector<int>::iterator last = nummies2.end()-1;
+	//* "dereferences" the iterator
+	std::cout << *first << "\n";
+	for (auto it = nummies2.begin(); it != nummies2.end(); it++)
+	{
+		std::cout << *it << "\n";
+	}
+	//erase REQUIRES an iterator to the object we want to erase
+	for (int j = 0; j < nummies2.size(); j++)
+	{
+		if (nummies2[j] == 6)
+		{
+			nummies2.erase(nummies2.begin() + j);
+			j--;
+		}
+	}
+	//OR
+	for (int j = 0; j < nummies2.size(); )
+	{
+		if (nummies2[j] == 6)
+		{
+			nummies2.erase(nummies2.begin() + j);
+		}
+		else j++;//only increment j if we don't erase
+	}
+	//OR
+	//use a reverse for loop
+	for (int j = nummies2.size() - 1; j >= 0; j--)
+	{
+		if (nummies2[j] == 6)
+		{
+			nummies2.erase(nummies2.begin() + j);
+		}
+	}
+	//OR
+	for (auto it = nummies2.begin(); it != nummies2.end(); )
+	{
+		if (*it == 6)
+		{
+			it = nummies2.erase(it);
+		}
+		else it++;
+	}
+
+	nummies2.erase(nummies2.begin() + 5);
+	//size shrinks by 1
+	//{ 1,2,3,4,5,6,8,9,9 }
+
 	PrintMe(nummies);
 
 	int n = 10;

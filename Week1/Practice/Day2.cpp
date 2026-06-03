@@ -40,10 +40,32 @@ void Day2::RenderZombies(const std::vector<Zombie>& walkers) const
 }
 
 
+
 //
 // Part B-3.1: Add a method definition for EraseZombies
 //
 
+int Day2::KillZombies(std::vector<Zombie>& walkers, const Player& steev) const
+{
+	int numberKilled = 0;
+	int distance;
+	int zX, zY;
+	const int pX = steev.GetXPosition(), pY = steev.GetYPosition();
+	for (int i = 0; i < walkers.size(); )
+	{
+		zX = walkers[i].GetXPosition();
+		zY = walkers[i].GetYPosition();
+		distance = sqrt((zX - pX) * (zX - pX) + (zY - pY) * (zY - pY));
+		if (distance < 4)
+		{
+			numberKilled++;
+			walkers.erase(walkers.begin() + i);
+			//i--;//ensure that this spot gets reviewed again
+		}
+		else i++;
+	}
+	return numberKilled;
+}
 
 
 
@@ -112,6 +134,8 @@ void Day2::PartB(int option)
 								//
 								// Part B-3.3 Call KillZombies
 								//
+								int numberKilled = KillZombies(mobs, player);
+								std::cout << "number killed: " << numberKilled << "\n";
 							}
 						}
 						else if (e.key.keysym.sym == SDLK_r)

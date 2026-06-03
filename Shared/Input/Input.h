@@ -24,6 +24,13 @@ public:
 	/// <param name="max">The maximum number to accept from the user.</param>
 	/// <returns>The number that the user entered.</returns>
 	static int GetInteger(std::string message, int min, int max);
+
+	/// <summary>
+	/// Show the menu and return the user's selection
+	/// </summary>
+	/// <param name="menuOptions">menu options to show</param>
+	/// <param name="message">the user's selection</param>
+	/// <returns>int for the user's 1 based selection</returns>
 	static int GetMenuSelection(std::vector<std::string> menuOptions, std::string message = "Choice? ");
 	static void PressEnter(std::string message = "Press ENTER to continue...", bool silent = false);
 
