@@ -19,6 +19,8 @@ public:
 		//SpawnZombies();
 		//std::cout << days;
 	}
+
+	void PrintMe(const std::vector<int>& numbers, int top = 0);
 private:
 
 	int days;

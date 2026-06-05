@@ -80,17 +80,28 @@ void Day3::PartC_1()
 
 			engine.ClearScreen(0, 0, 0, 0xFF);
 
+			//
+			// Part C-1.2: call the method
+			//
+			//if (channel == ColorChannel::RED)
+			//	ShiftColor(lights, offsets);
+			//else
+			//	ShiftColor(lights, offsets, channel);
+
+			//a ternary operator is shorthand for an if-else
+			(channel == ColorChannel::RED) ? 
+				ShiftColor(lights, offsets) : ShiftColor(lights, offsets, channel);
+
+
 			for (auto& target : lights)
 			{
 				map.DrawCell(target.col, target.row, target.red, target.green, target.blue);
 			}
 
+			
+
 			//Update screen
 			engine.Present();
-
-			//
-			// Part C-1.2: call the method
-			//
 
 		}
 	}
@@ -128,9 +139,16 @@ void Day3::PartC_2()
 		std::vector<Target> lights, noGreens, noBlues, noReds, current;
 		MakeLights(lights);
 		current = lights;
+		noGreens = lights;
+		noBlues = lights;
+		noReds = lights;
 		//
 		// Part C-2.1: copy the vector
-		//
+		//	after copying, Call RemoveLights on each one
+		//	to remove the specific channel
+		RemoveLights(noGreens, ColorChannel::GREEN);
+		RemoveLights(noBlues, ColorChannel::BLUE);
+		RemoveLights(noReds, ColorChannel::RED);
 
 		Map map(engine.Renderer(), 10);
 
@@ -153,15 +171,19 @@ void Day3::PartC_2()
 					{
 					case SDLK_KP_1:
 					case SDLK_1://noReds
+						current = noReds;
 						break;
 					case SDLK_KP_2:
 					case SDLK_2://noGreens
+						current = noGreens;
 						break;
 					case SDLK_KP_3:
 					case SDLK_3://noBlues
+						current = noBlues;
 						break;
 					case SDLK_KP_4:
 					case SDLK_4://all
+						current = lights;
 						break;
 					case SDLK_KP_5:
 					case SDLK_5://exit

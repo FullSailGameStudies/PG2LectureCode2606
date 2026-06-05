@@ -11,27 +11,53 @@
 
 //IF the parameter is a class, use pass-by-reference
 
-void PrintMe(const std::vector<int>& numbers)
-{
-	//range-based AKA foreach
-	for (auto& i : numbers)
-	{
-		std::cout << i << " ";
-	}
-}
+// ALL default params must appear at the end of
+// the parameter list
+//void PrintMe(const std::vector<int>& numbers, int top = 0)
+//{
+//	int count = 0;
+//	//range-based AKA foreach
+//	for (auto& i : numbers)
+//	{
+//		if (top > 0 && count++ >= top) break;
+//		std::cout << i << " ";
+//	}
+//}
 void Increment(int& number)//pass-by-reference (ALIAS)
 {
 	number++;
+}
+
+void PrintInfo(const std::vector<int>& numbers)
+{
+	//size() - # of items in the vector
+	//capacity() - length of the internal array
+	//size() <= capacity()
+	std::cout << numbers.size() << "/" << numbers.capacity() << "\n";
 }
 
 
 int main(int argc, char* args[])
 {
 	std::vector<int> nummies;
-	for (int i = 0; i < 100; i++)
+	nummies.reserve(10);//sets the capacity
+	//nummies.resize(10);
+	PrintInfo(nummies);//size: 0? capacity: 0?
+	for (int i = 0; i < 10; i++)
 	{
 		nummies.push_back(rand());
+		PrintInfo(nummies);
 	}
+	//3 ways to copy a vector
+	std::vector<int> nummy2 = nummies;
+	std::vector<int> nummy3(nummies);
+	std::vector<int> nummy4;
+	nummy4.reserve(nummies.size());
+	for (int i = 0; i < 10; i++)
+	{
+		nummy4.push_back(nummies[i]);
+	}
+
 	std::vector<int> nummies2{ 1,2,3,4,5,6,6,8,9 };
 	std::vector<int>::iterator first = nummies2.begin();
 	std::vector<int>::iterator last = nummies2.end()-1;
@@ -82,7 +108,6 @@ int main(int argc, char* args[])
 	//size shrinks by 1
 	//{ 1,2,3,4,5,6,8,9,9 }
 
-	PrintMe(nummies);
 
 	int n = 10;
 	Increment(n);//int& number = n;
@@ -94,6 +119,8 @@ int main(int argc, char* args[])
 	std::cout << n << "\n";
 
 	Day2 day2;
+	day2.PrintMe(nummies);
+	day2.PrintMe(nummies, 20);
 
 	int menuSelection = 0;
 	std::vector<std::string> menuOptions{

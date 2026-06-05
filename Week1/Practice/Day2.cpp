@@ -5,6 +5,18 @@
 #include "Player.h"
 
 const float PI = 3.1415f;
+void Day2::PrintMe(const std::vector<int>& numbers, int top)
+{
+	int count = 0;
+	//range-based AKA foreach
+	std::cout << "\n";
+	for (auto& i : numbers)
+	{
+		if (top > 0 && count++ >= top) break;
+		std::cout << i << " ";
+	}
+	std::cout << "\n";
+}
 //
 // Part B-1.1: Add a method definition for SpawnZombies
 //
