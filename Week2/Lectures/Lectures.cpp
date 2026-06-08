@@ -5,9 +5,29 @@
 #include "Day6.h"
 #include <Input.h>
 
+//good for
+//  problems you can break down into smaller versions
+//  problems that have a manageable depth
+void Method(int number)
+{
+	//every recursive loop needs 2 things:
+	//1) a recursive call (the line where the method calls itself)
+	//2) an exit condition (a base case) - a return w/out calling the method again
+	if (number >= 100) return;//an exit condition
+
+
+	{
+		int n = number + 1;
+		std::cout << number;
+		Method(n);//recursive call
+	}
+}
 
 int main(int argc, char* args[])
 {
+	int num = 10;
+	Method(5);
+
 	srand(static_cast<unsigned int>(time(NULL)));
 
 	std::string hello = "Hello Week 2!";
