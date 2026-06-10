@@ -110,24 +110,41 @@ void Day5::PartB_2(int section)
 	{
 		Grouper grouper;
 
-		std::vector<Light> redLights;
-		redLights.reserve(48 * 48);
-		grouper.MakeRedLights(redLights);
 
 		std::vector<Light> allLights;
 		allLights.reserve(12 * 12);
 		grouper.MakeLights(allLights);
-
-		std::vector<Light> greenLights;
-		greenLights.reserve(51);
-		grouper.MakeGreenLights(greenLights);
-
 
 		std::map<ColorChannel, std::vector<Light>> groupedColors;
 
 		//
 		// TODO: (Lecture) Part B-2.1 fill the std::map
 		// 
+		for (auto& light : allLights)
+		{
+			//figure out the color channel
+			ColorChannel ch;
+			if (light.red > light.green and light.red > light.blue) ch = ColorChannel::RED;
+			else if (light.green > light.red and light.green > light.blue) ch = ColorChannel::GREEN;
+			else ch = ColorChannel::BLUE;
+
+			//ch = (light.red > light.green and light.red > light.blue) ? ColorChannel::RED :
+			//	 (light.green > light.red and light.green > light.blue) ? ColorChannel::GREEN :
+			//	 ColorChannel::BLUE;
+
+			//try to find the channel in the group
+			auto foundChannel = groupedColors.find(ch);
+			if (foundChannel == groupedColors.end())
+			{
+				//std::vector<Light> newChannel{ light };
+				groupedColors[ch] = { light };
+			}
+			else
+			{
+				//use the iterator
+				foundChannel->second.push_back(light);
+			}
+		}
 
 
 		switch (section)
@@ -141,6 +158,25 @@ void Day5::PartB_2(int section)
 			//
 			// TODO: (Lecture) Part B-2.2 loop over the std::map
 			//
+			for (auto& [channel,channelLights] : groupedColors)
+			{
+				switch (channel)
+				{
+				case ColorChannel::RED:
+					std::cout << "RED: ";
+					break;
+				case ColorChannel::GREEN:
+					std::cout << "GREEN: ";
+					break;
+				case ColorChannel::BLUE:
+					std::cout << "BLUE: ";
+					break;
+				default:
+					break;
+				}
+				std::cout << channelLights.size() << "\n";
+				grouper.DrawLights(screenMap, channelLights, columnRange, column, row);
+			}
 
 
 			//Update screen
@@ -158,6 +194,15 @@ void Day5::PartB_2(int section)
 			//
 			// TODO: (Lecture)  Part B-3 call std::map's find method
 			//
+			foundBlues = groupedColors.find(ColorChannel::BLUE);
+			if (foundBlues == groupedColors.end())
+			{
+				std::cout << "BLUE channel not found.\n";
+			}
+			else
+			{
+				std::cout << "BLUE has " << foundBlues->second.size() << " lights.\n";
+			}
 
 			for (auto& [channel, channelLights] : groupedColors)
 			{

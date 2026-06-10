@@ -49,6 +49,20 @@ int main(int argc, char* args[])
 
 	}
 
+	std::string itemToLookup = "dino nuggies";
+	//menu[itemToLookup] = 9.99f;
+	auto dinoSearch = menu.find(itemToLookup);
+	//find will give us .end() if it isn't found
+	if (dinoSearch == menu.end())
+	{
+		std::cout << itemToLookup << " is not on the menu. Try McDonald's.\n";
+	}
+	else
+	{
+		const auto& [dinoName, dinoPrice] = *dinoSearch;
+		std::cout << dinoName << " costs " << dinoPrice << "!\n";
+	}
+
 	//map looping
 	std::cout << "\n\nPG2 Cafe\n";
 	for (auto it = menu.begin(); it != menu.end(); it++)
@@ -68,7 +82,7 @@ int main(int argc, char* args[])
 	//BETTER range-based for using structured bindings
 	for (auto& [itemName,itemPrice] : menu)
 	{
-		std::cout << std::setw(10) << std::left << itemName << " ";
+		std::cout << std::setw(13) << std::left << itemName << " ";
 		Console::SetForegroundColor(ConsoleColor::Cyan);
 		std::cout << std::setw(7) << std::right << itemPrice << "\n";
 		Console::Reset();
