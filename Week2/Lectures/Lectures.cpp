@@ -4,6 +4,8 @@
 #include "Day5.h"
 #include "Day6.h"
 #include <Input.h>
+#include <map>
+#include <iomanip>
 
 //good for
 //  problems you can break down into smaller versions
@@ -25,6 +27,54 @@ void Method(int number)
 
 int main(int argc, char* args[])
 {
+	std::map<std::string, float> menu;
+	//key-value pairs
+	std::pair<std::string, float> menuPair;
+
+	//2 ways to get key-value pairs into the map
+	// 1) "easy" way
+	//		map[key] = value;
+	menu["chicken"] = 5.99f;
+	menu["fries"] = 3.99f;
+	menu["fries"] = 4.49f;//overwrites
+
+	// 2) "not-easy" way
+	//		map.insert(key-value pair);
+	menuPair = std::make_pair("coke", 2.99f);
+	menu.insert(menuPair);
+	menuPair.second = 3.49f;
+	auto wasInserted = menu.insert(menuPair);//does NOT overwrite
+	if (wasInserted.second == false)
+	{
+
+	}
+
+	//map looping
+	std::cout << "\n\nPG2 Cafe\n";
+	for (auto it = menu.begin(); it != menu.end(); it++)
+	{
+		//it points to the key-value pair
+		//it->first is the key
+		//it->second is the value
+		std::cout << it->first << " " << it->second << "\n";
+	}
+	std::cout << "\n\n";
+	//range-based for
+	for (auto& kvp : menu)
+	{
+		std::cout << kvp.first << " " << kvp.second << "\n";
+	}
+	std::cout << "\n\n";
+	//BETTER range-based for using structured bindings
+	for (auto& [itemName,itemPrice] : menu)
+	{
+		std::cout << std::setw(10) << std::left << itemName << " ";
+		Console::SetForegroundColor(ConsoleColor::Cyan);
+		std::cout << std::setw(7) << std::right << itemPrice << "\n";
+		Console::Reset();
+	}
+	std::cout << "\n\n";
+
 	int num = 10;
 	Method(5);
 
