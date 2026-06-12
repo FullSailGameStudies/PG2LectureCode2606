@@ -224,6 +224,36 @@ void Day5::PartB_2(int section)
 			//
 			// TODO: (Lecture)  Part C-1 erasing from a std::map
 			//
+			//find the blue channel in the map
+			//if found
+			//	want to randomly generate a blue value
+			//		that will be the range of blues to erase
+			//		erase any blue light with a blue value less than this value
+			//	after removing the blues, if the vector becomes empty, remove the blue channel
+			foundBlues = groupedColors.find(ColorChannel::BLUE);
+			if (foundBlues == groupedColors.end())
+			{
+				std::cout << "There are no blue lights.\n";
+			}
+			else
+			{
+				int blueMax = 256;// rand() % 256;
+				int bluesErased = 0;
+				std::vector<Light>& blues = foundBlues->second;
+				for (int i = 0; i < blues.size(); i++)
+				{
+					if (blues[i].blue < blueMax)
+					{
+						blues.erase(blues.begin() + i);
+						i--;
+						bluesErased++;
+					}
+				}
+				std::cout << "Erased " << bluesErased << " lights.\n";
+
+				if (blues.empty())
+					groupedColors.erase(foundBlues);
+			}
 
 
 			for (auto& [channel, channelLights] : groupedColors)
