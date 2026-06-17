@@ -34,7 +34,7 @@ public:
 			suit_ = suit;
 	}
 
-private:
+protected:
 	std::string face_, suit_;
 
 

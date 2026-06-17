@@ -6,6 +6,7 @@
 #include "Input.h"
 #include <Player.h>
 #include <Color.h>
+#include <Pistol.h>
 
 
 int main(int argc, char* args[])
@@ -25,6 +26,8 @@ int main(int argc, char* args[])
         Console::Write(ch, (ConsoleColor)(rand() % 7 + 1));
     }
     std::cout << "\n";
+
+	Pistol pewpew(10, 20, 50, 100);
 
 	int menuSelection = 0;
 	std::vector<std::string> menuOptions{
