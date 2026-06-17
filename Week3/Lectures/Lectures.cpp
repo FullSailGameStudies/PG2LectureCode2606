@@ -8,9 +8,20 @@
 #include <Color.h>
 #include <Pistol.h>
 
+int Add(int n1, int n2)
+{
+	return n1 + n2;
+}
+int Add(float n1, float n2)
+{
+	return n1 + n2;
+}
+
 
 int main(int argc, char* args[])
 {
+	Add(5, 2);
+	Add(5.f, 2.f);
 	Player p1("bruceW", 100);//we MUST call a constructor always
 	//p1.SetGamerTag("BruceW");
 	//p1.Health(100);
@@ -28,6 +39,14 @@ int main(int argc, char* args[])
     std::cout << "\n";
 
 	Pistol pewpew(10, 20, 50, 100);
+	Pistol p2(5, 20, 50, 100);
+	Pistol p3 = pewpew + p2;
+	Weapon wpn(50, 200);
+	wpn.showMe();
+	pewpew.showMe();
+
+	wpn = pewpew;//weapon parts of pewpew get copied to wpn
+
 
 	int menuSelection = 0;
 	std::vector<std::string> menuOptions{

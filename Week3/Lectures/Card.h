@@ -7,7 +7,7 @@ public:
 		: face_(face), suit_(suit)
 	{}
 
-	int Value() const;
+	virtual int Value() const;
 	void Print() const;
 
 	const std::string& Face() const { return face_; }

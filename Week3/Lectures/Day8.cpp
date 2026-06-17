@@ -74,6 +74,8 @@ void Day8::PartB_1()
 						// TODO: Part B-1.2 Create a BlackjackCard object
 						//
 						BlackjackCard cardyB("Q","Diamonds");
+						std::cout << cardyB.Value() << "\n";
+						cardyB.Print();
 
 						pos cardSize = GameTextures::CardSize(scale);
 						int x = 5;

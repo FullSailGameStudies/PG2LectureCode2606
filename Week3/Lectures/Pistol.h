@@ -1,5 +1,6 @@
 #pragma once
 #include "Weapon.h"
+#include <algorithm>
 //the class relationship
 //in OOP, it is called the IS-A relationship
 class Pistol : public Weapon
@@ -17,6 +18,21 @@ public:
 		ammo_(ammo), capacity_(capacity)
 	{}
 
+	Pistol operator+(const Pistol& other)
+	{
+		int newAmmo = ammo_ + other.ammo_;
+		int newCap = std::max(capacity_, other.capacity_);
+		Pistol result(newAmmo, newCap, range(), damage());
+		return result;
+	}
+
+	//OVERRIDE:
+	//STEP 2:
+	// create another method in the derived that
+	// matches the base (return type, name, parameters).
+	// OPTIONAL (but good). add the 'override' keyword
+	void showMe() override;
+
 	int Ammo() const { return ammo_; }
 	int Capacity() const { return capacity_; }
 	void Ammo(int ammo)
@@ -33,6 +49,12 @@ public:
 	}
 
 private:
+	//HAS-A relationship
 	int ammo_, capacity_;
+
+
+	//
+	// favor HAS-A over IS-A
+	// HAS-A can be changed at runtime
 };
 
