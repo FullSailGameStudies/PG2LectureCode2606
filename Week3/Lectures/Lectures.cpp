@@ -4,10 +4,21 @@
 #include "Day8.h"
 #include "Day9.h"
 #include "Input.h"
+#include <Player.h>
+#include <Color.h>
 
 
 int main(int argc, char* args[])
 {
+	Player p1("bruceW", 100);//we MUST call a constructor always
+	//p1.SetGamerTag("BruceW");
+	//p1.Health(100);
+	std::cout << p1.GetGamerTag() << ": " << p1.Health() << "\n";
+	Color clr;
+	clr.red = clr.blue = 0;
+	clr.green = 255;
+	clr.alpha = 255;
+
     std::string hello = "Hello Week 3!";
     for (auto& ch : hello)
     {

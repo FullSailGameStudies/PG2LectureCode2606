@@ -15,19 +15,24 @@ class Player
 
 	//in general, hide as much as you can
 
-private:
+public:
+	//constructors (ctors)
+	// IF you don't create one, the compiler will give you a default ctor
+	//		a default ctor: a ctor w/out parameters
+	// IF you create a ctor, the compiler's ctor is not available
+	// at least 1
+	// special rules:
+	//	 MUST have the same name as the class
+	//   NO return type at all (not even void)
+	//
 
-	//FIELDS (data member or member variables)
-	//  what describes the object
-	//  in general (most of the time), make your fields private
-	// naming conventions
-	//	  camelCasingNamingConvention
-	//	  for fields, we usually add something extra
-	//	  to set it apart from other variables
-	//	  EX: m_sGamerTag, m_wsGamerTag, m_gamerTag, mGamerTag, _gamerTag, gamerTag_
-	//	  if it's a public field, make it as simple as possible
-	std::string gamerTag_;
-	int health_;
+	//preferred way to initialize the fields: use 
+	//  a member initialization list
+	Player(const std::string& gamerTag, int health) :
+		gamerTag_(gamerTag),//only inits the field ONCE
+		health_(health)
+	{
+	}
 
 	//getters/setters (gatekeepers) - methods used to access and modify fields
 	//   most of the time we define them in the header
@@ -63,5 +68,19 @@ private:
 		if (updatedHealth >= 0 && updatedHealth <= 100)
 			health_ = updatedHealth;
 	}
+
+private:
+
+	//FIELDS (data member or member variables)
+	//  what describes the object
+	//  in general (most of the time), make your fields private
+	// naming conventions
+	//	  camelCasingNamingConvention
+	//	  for fields, we usually add something extra
+	//	  to set it apart from other variables
+	//	  EX: m_sGamerTag, m_wsGamerTag, m_gamerTag, mGamerTag, _gamerTag, gamerTag_
+	//	  if it's a public field, make it as simple as possible
+	std::string gamerTag_;
+	int health_;
 };
 

@@ -3,6 +3,13 @@
 class Card
 {
 public:
+	Card(const std::string& face, const std::string& suit)
+		: face_(face), suit_(suit)
+	{}
+
+	int Value() const;
+	void Print() const;
+
 	const std::string& Face() const { return face_; }
 	const std::string& Suit() const { return suit_; }
 
