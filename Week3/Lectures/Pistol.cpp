@@ -1,6 +1,11 @@
 #include "Pistol.h"
 #include <iostream>
 
+int Pistol::calcDamage()
+{
+	return Weapon::calcDamage();
+}
+
 void Pistol::showMe()
 {
 	//2 modes of overriding:

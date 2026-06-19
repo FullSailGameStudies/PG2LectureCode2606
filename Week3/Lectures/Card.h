@@ -6,6 +6,7 @@ public:
 	Card(const std::string& face, const std::string& suit)
 		: face_(face), suit_(suit)
 	{}
+	virtual ~Card() {};
 
 	virtual int Value() const;
 	void Print() const;

@@ -26,6 +26,10 @@ public:
 		return result;
 	}
 
+	//override the pure virtual to make sure
+	//this class is also NOT an abstract base class
+	int calcDamage() override;
+
 	//OVERRIDE:
 	//STEP 2:
 	// create another method in the derived that

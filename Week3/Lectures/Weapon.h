@@ -16,7 +16,10 @@ public:
 	//   this tells the compiler and runtime that
 	//		the derived classes MIGHT have overridden it
 	virtual void showMe();
-	int calcDamage();
+	
+	//make this method a pure virtual
+	//to make the class an ABSTRACT base class
+	virtual int calcDamage() = 0;
 
 	int range() const
 	{
