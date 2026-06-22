@@ -8,6 +8,22 @@ public:
 
 	Player() : worldX(0), worldY(0) {}
 
+	//add a method to Serialize the object's data
+	// parameters:
+	//	 where to save (ofstream)
+	//	 delimiter (don't hardcode this)
+	void SerializeCSV(std::ostream& outFile, char delimiter) const;
+
+	//add a method to DESERIALIZE some data into the object
+	//  parameters:
+	//		the string data to parse
+	//		the delimiter
+	void DeserializeCSV(const std::string& csvData, char delimiter);
+
+	Player(const std::string& csvData, char delimiter)
+	{
+		DeserializeCSV(csvData, delimiter);
+	}
 	//
 	// Part B-1.1
 	//
