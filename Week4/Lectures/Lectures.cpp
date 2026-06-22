@@ -6,6 +6,9 @@
 #include <fstream>
 #include <sstream>//for stringstream
 #include <Player.h>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 
 int main(int argc, char* args[])
@@ -17,8 +20,19 @@ int main(int argc, char* args[])
 	//  - did it work?
 	char delimiter = '^';
 	std::string fileName = "2606.csv";
-	std::string path = "";// "C:\\temp\\2606\\";//this path MUST exists
-	std::string finalPath = path + fileName;
+	std::string path = "C:/Courses/PG2/LectureCode/LectureCode2606/Week4/Lectures";// "C:\\temp\\2606\\";//this path MUST exists
+	std::string finalPath = fileName;
+
+	if (fs::exists(path) && fs::is_directory(path))
+	{
+		for (const auto& entry : fs::directory_iterator(path)) 
+		{
+			//if (entry.path().extension() == ".csv")
+			{
+				std::cout << entry.path() << '\n';
+			}
+		}
+	}
 	std::ofstream outFile(finalPath);//will not create the path. only the file.
 	if (outFile.is_open())
 	{
